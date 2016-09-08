@@ -17,6 +17,36 @@ func setup() {
 	LoadMaxmindDB("../test.mmdb")
 }
 
+func (s *serviceSuite) TestLoadingMultipleTimes(c *C) {
+	for i := 0; i < 10; i++ {
+		setup()
+	}
+}
+
+func (s *serviceSuite) TestLoadUnloadLoad(c *C) {
+	setup()
+
+	for i := 0; i < 10; i++ {
+		UnloadMaxmindDB()
+		setup()
+	}
+}
+
+func (s *serviceSuite) TestDbNotLoaded(c *C) {
+	UnloadMaxmindDB()
+
+	_, err := LookupIP("1.2.3.4")
+	c.Assert(err, NotNil)
+	c.Assert(err, ErrorMatches, ".* not loaded")
+}
+
+func (s serviceSuite) TestDbLoaded(c *C) {
+	setup()
+
+	_, err := LookupIP("1.2.3.4")
+	c.Assert(err, IsNil)
+}
+
 func (s *serviceSuite) TestBadInputs(c *C) {
 
 	setup()

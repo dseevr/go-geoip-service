@@ -12,7 +12,7 @@ import (
 )
 
 type errorResponse struct {
-	Message string `json:"message"`
+	Error string `json:"error"`
 }
 
 func lookupHandler(w http.ResponseWriter, req *http.Request) {
@@ -22,13 +22,14 @@ func lookupHandler(w http.ResponseWriter, req *http.Request) {
 
 	record, err := service.LookupIP(ip)
 	if err != nil {
-		resp := errorResponse{Message: err.Error()}
+		resp := errorResponse{Error: err.Error()}
 
 		bytes, jsonErr := json.Marshal(resp)
 		if jsonErr != nil {
 			log.Fatal(jsonErr)
 		}
 
+		w.WriteHeader(http.StatusInternalServerError)
 		io.WriteString(w, string(bytes))
 		return
 	}
