@@ -1,0 +1,4 @@
+*.mmdb
+*.mmdb.gz
+
+go-geoip-service
