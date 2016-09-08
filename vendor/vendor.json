@@ -1,0 +1,37 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "ssdHHJsQomfjUFJAELnUNCK/9ck=",
+			"path": "github.com/oschwald/geoip2-golang",
+			"revision": "ccee6e9d9b1ee5cee16ac664bc1982952edfb13d",
+			"revisionTime": "2016-07-30T17:17:11Z"
+		},
+		{
+			"checksumSHA1": "zpySGvc5SKTa1uJ9wt24zvEFi1c=",
+			"path": "github.com/oschwald/maxminddb-golang",
+			"revision": "f4aa55714a3f843869ca9a38625e177a627c1ce6",
+			"revisionTime": "2016-07-22T23:03:10Z"
+		},
+		{
+			"checksumSHA1": "8fD/im5Kwvy3JgmxulDTambmE8w=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "30de6d19a3bd89a5f38ae4028e23aaa5582648af",
+			"revisionTime": "2016-09-07T05:59:14Z"
+		},
+		{
+			"checksumSHA1": "fpW2dhGFC6SrVzipJx7fjg2DIH8=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "30de6d19a3bd89a5f38ae4028e23aaa5582648af",
+			"revisionTime": "2016-09-07T05:59:14Z"
+		},
+		{
+			"checksumSHA1": "I2d7Kn572Fz02mnnlcI4MHXCu0c=",
+			"path": "gopkg.in/check.v1",
+			"revision": "4f90aeace3a26ad7021961c297b22c42160c7b25",
+			"revisionTime": "2016-01-05T16:49:36Z"
+		}
+	],
+	"rootPath": "github.com/dseevr/go-geoip-service"
+}
