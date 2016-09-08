@@ -1,3 +1,5 @@
+![goreportcard](https://goreportcard.com/badge/github.com/dseevr/go-geoip-service "goreportcard")
+
 # Go GeoIP Service
 
 A Go (golang) HTTP service which will tell you the country associated with a given IP.
