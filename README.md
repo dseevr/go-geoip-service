@@ -14,7 +14,7 @@ Build it yourself:
 ```sh
 git clone git@github.com:dseevr/go-geoip-service.git
 cd go-geoip-service
-go build
+make
 ./go-geoip-service --db-path=/mm.db --port=1234
 ```
 
@@ -44,6 +44,12 @@ Response:
 You will need a GeoLite2 database from MaxMind.  Specify it with the `--db-path` option.
 
 You can get a database here:  https://dev.maxmind.com/geoip/geoip2/geolite2/
+
+## Running the tests
+
+You will need to have a MaxMind database in the base folder called `test.db`.
+
+Then just run `make test`!
 
 ## License
 

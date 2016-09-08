@@ -11,17 +11,32 @@ import (
 	"github.com/dseevr/go-geoip-service/service"
 )
 
+type errorResponse struct {
+	Message string `json:"message"`
+}
+
 func lookupHandler(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
 	ip := req.URL.Query().Get("ip")
 
-	record, _ := service.LookupIP(ip)
+	record, err := service.LookupIP(ip)
+	if err != nil {
+		resp := errorResponse{Message: err.Error()}
+
+		bytes, jsonErr := json.Marshal(resp)
+		if jsonErr != nil {
+			log.Fatal(jsonErr)
+		}
+
+		io.WriteString(w, string(bytes))
+		return
+	}
 
 	bytes, err := json.Marshal(record)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	w.Header().Set("Content-Type", "application/json")
 	io.WriteString(w, string(bytes))
 }
 
