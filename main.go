@@ -41,14 +41,10 @@ func lookupHandler(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, string(bytes))
 }
 
-// -------------------------------------------------------------------------------------------------
-
-var (
-	dbPath string
-	port   int
-)
-
 func main() {
+	var dbPath string
+	var port int
+
 	flag.StringVar(&dbPath, "db-path", "", "path to MaxMind GeoLite2 database")
 	flag.IntVar(&port, "port", 12345, "http port to listen on")
 	flag.Parse()
