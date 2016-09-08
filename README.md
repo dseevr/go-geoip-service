@@ -1,4 +1,4 @@
-![goreportcard](https://goreportcard.com/badge/github.com/dseevr/go-geoip-service "goreportcard")
+[![Build Status](https://travis-ci.org/dseevr/go-geoip-service.svg?branch=master)](https://travis-ci.org/dseevr/go-geoip-service) ![goreportcard](https://goreportcard.com/badge/github.com/dseevr/go-geoip-service "goreportcard")
 
 # Go GeoIP Service
 
