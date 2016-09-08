@@ -21,7 +21,10 @@ go build
 Run from Docker:
 
 ```sh
-docker run --rm -it -p 1234:1234 -v /foo/bar/GeoLite2-Country.mmdb:/mm.db billrobinson/go-geoip-service --db-path=/mm.db --port=1234
+docker run --rm -it \
+  -p 1234:1234 \
+  -v /foo/bar/GeoLite2-Country.mmdb:/mm.db \
+  billrobinson/go-geoip-service --db-path=/mm.db --port=1234
 ```
 
 ## Looking up an IP

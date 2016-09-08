@@ -5,34 +5,16 @@ import (
 	"flag"
 	"io"
 	"log"
-	"net"
 	"net/http"
 	"strconv"
 
-	geoip2 "github.com/oschwald/geoip2-golang"
+	"github.com/dseevr/go-geoip-service/service"
 )
-
-// Response is a struct that holds the data for the JSON HTTP response body.
-type Response struct {
-	Country string `json:"country"`
-}
-
-func lookupIP(ip string) *Response {
-	parsedIP := net.ParseIP(ip)
-	record, err := mmdb.City(parsedIP)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return &Response{
-		Country: record.Country.IsoCode,
-	}
-}
 
 func lookupHandler(w http.ResponseWriter, req *http.Request) {
 	ip := req.URL.Query().Get("ip")
 
-	record := lookupIP(ip)
+	record, _ := service.LookupIP(ip)
 
 	bytes, err := json.Marshal(record)
 	if err != nil {
@@ -43,20 +25,7 @@ func lookupHandler(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, string(bytes))
 }
 
-func loadMaxmindDB(path string) *geoip2.Reader {
-	db, err := geoip2.Open(path)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	log.Println("Loaded MMDB from " + path)
-
-	return db
-}
-
 // -------------------------------------------------------------------------------------------------
-
-var mmdb *geoip2.Reader
 
 var (
 	dbPath string
@@ -77,7 +46,7 @@ func main() {
 		log.Fatalln("--port must be >= 1 and <= 65535")
 	}
 
-	mmdb = loadMaxmindDB(dbPath)
+	service.LoadMaxmindDB(dbPath)
 
 	stringPort := strconv.Itoa(port)
 
