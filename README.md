@@ -25,7 +25,7 @@ Run from Docker:
 ```sh
 docker run --rm -it \
   -p 1234:1234 \
-  -v /foo/bar/GeoLite2-Country.mmdb:/mm.db \
+  -v /foo/bar/GeoLite2-Country.mmdb:/mm.db:ro \
   billrobinson/go-geoip-service --db-path=/mm.db --port=1234
 ```
 
